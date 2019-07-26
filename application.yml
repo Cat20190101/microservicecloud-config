@@ -1,29 +1,15 @@
-﻿server:
-  port: 9527
+﻿spring:
+  profiles:
+    active: dev
+---
 spring:
+  profiles: dev #开发环境
   application:
-    name: microservicecloud-zuul-gateway
+    name: springcloud-study-config-dev
+---
+spring:
+  profiles: test #测试环境  
+  application:
+    name: springcloud-study-config-test
 
-eureka:
-  instance:
-    instance-id: gateway-9527
-    prefer-ip-address: true
-  client:
-    service-url:
-      # 单机版配置defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka #设置与eureka server 交互的地址查询服务和注册服务都需要依赖的地址
-      #集群配置
-      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
-info:
-  app.name: microservicecloud-zuul-gateway
-  company.name: www.zg.com
-  build.artifactId: ${project.artifactId}
-  build.version: ${project.version}
-  
-zuul:
-  routes:
-    mydept.serviceId: study-springcloud-dept
-    mydept.path: /mydept/**
-  #多个用"*" ignored-services: "*"
-  ignored-services: study-springcloud-dept
-  #公共前缀
-  prefix: /springcloud
+#请保存为UTF-8格式
